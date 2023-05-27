@@ -1,6 +1,6 @@
 ﻿#include <iostream>
 using namespace std;
-void FillRand(int arr[], const int n);
+void FillRand(int arr[], const int n, int minRand = 0, int maxRand=100);
 void Print(int arr[], const int n);
 void Sort(int arr[], const int n);
 void Sum(int arr[], const int n);
@@ -18,6 +18,8 @@ void main()
 
 	FillRand(arr, n);
 	Print(arr, n);
+	int minRand, maxRand;
+	
 	Sum(arr, n);
 	Avg(arr, n);
 	minValueIn(arr, n);
@@ -33,8 +35,8 @@ void main()
 
 	const int SIZE = 8;
 	int brr[SIZE];
-
-	FillRand(brr, SIZE);
+	cout << "Введите минимальное и максимальное случайное число: "; cin >> minRand >> maxRand;
+	FillRand(brr, SIZE, minRand, maxRand);
 	Print(brr, SIZE);
 	shiftLeft(brr, SIZE);
 	Print(brr, SIZE);
@@ -45,11 +47,11 @@ void main()
 
 	
 }
-void FillRand(int arr[], const int n)
+void FillRand(int arr[], const int n, int minRand, int maxRand)
 {
 	for (int i = 0; i < n; i++)
 	{
-		arr[i] = rand();
+		arr[i] = rand()% (maxRand - minRand) + minRand;
 	}
 }
 void Print(int arr[], const int n)
