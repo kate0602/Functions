@@ -9,7 +9,6 @@
 #include"Statistics.cpp"
 
 
-
 /*void shiftLeft(int arr[], const int n);
 void shiftRight(int arr[], const int n);*/
 
@@ -102,16 +101,6 @@ void main()
 	minValueIn(d_arr_2, ROWS, COLS);
 	maxValueIn(d_arr_2, ROWS, COLS);
 }
-
-
-
-
-
-
-
-
-
-
 
 /*void shiftLeft(int arr[], const int n)
 {
