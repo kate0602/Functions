@@ -8,8 +8,9 @@ void FillRand(double arr[], const int n, int minRand = 0, int maxRand=100);
 void FillRand(int arr[ROWS][COLS], const int ROWS, const int COLS, int minRand = 0, int maxRand = 100);
 void FillRand(double arr[ROWS][COLS], const int ROWS, const int COLS, int minRand = 0, int maxRand = 100);
 
-void Print(int arr[], const int n);
-void Print(double arr[], const int n);
+template<typename T> // имя шаблона
+void Print(T arr[], const int n);
+
 void Print(int arr[ROWS][COLS], const int ROWS, const int COLS);
 void Print(double arr[ROWS][COLS], const int ROWS, const int COLS);
 
@@ -20,22 +21,26 @@ void Sort(double arr[ROWS][COLS], const int ROWS, const int COLS);
 
 int Sum(int arr[], const int n);
 double Sum(double arr[], const int n);
-int Sum(int arr[ROWS][COLS], const int ROWS, const int COLS);
+template<typename T>
+T Sum(T arr[ROWS][COLS], const int ROWS, const int COLS);
 double Sum(double arr[ROWS][COLS], const int ROWS, const int COLS);
 
 double Avg(int arr[], const int n);
 double Avg(double arr[], const int n);
-double Avg(int arr[ROWS][COLS], const int ROWS, const int COLS);
+template<typename T>
+double Avg(T arr[ROWS][COLS], const int ROWS, const int COLS);
 double Avg(double arr[ROWS][COLS], const int ROWS, const int COLS);
 
 int minValueIn(int arr[], const int n);
 double minValueIn(double arr[], const int n);
-int minValueIn(int arr[ROWS][COLS], const int ROWS, const int COLS);
+template<typename T>
+T minValueIn(T arr[ROWS][COLS], const int ROWS, const int COLS);
 double minValueIn(double arr[ROWS][COLS], const int ROWS, const int COLS);
 
 int maxValueIn(int arr[], const int n);
 double maxValueIn(double arr[], const int n);
-int maxValueIn(int arr[ROWS][COLS], const int ROWS, const int COLS);
+template<typename T>
+T maxValueIn(T arr[ROWS][COLS], const int ROWS, const int COLS);
 double maxValueIn(double arr[ROWS][COLS], const int ROWS, const int COLS);
 
 
@@ -113,6 +118,11 @@ void main()
 	};
 	FillRand(d_arr_2, ROWS, COLS);
 	Print(d_arr_2, ROWS, COLS);
+	cout << "Сумма элементов массива: " << Sum(d_arr_2, ROWS, COLS) << endl;
+	cout << "Средне-арифметическое элементов массива: " << Avg(d_arr_2, ROWS, COLS) << endl;
+	cout << "Минимальное значение в массиве: " << minValueIn(d_arr_2, ROWS, COLS) << endl;
+	cout << "Максимальное значение в массиве: " << maxValueIn(d_arr_2, ROWS, COLS) << endl;
+
 	Sort(d_arr_2, ROWS, COLS);
 	Sum(d_arr_2, ROWS, COLS);
 	Avg(d_arr_2, ROWS, COLS);
@@ -163,23 +173,16 @@ void FillRand(double arr[ROWS][COLS], const int ROWS, const int COLS, int minRan
 	}
 }
 
+template<typename T>
+void Print(T arr[], const int n)
+{
+	for (int i = 0; i < n; i++)
+	{
+		cout << arr[i] << "\t";
+	}
+	cout << endl;
+}
 
-void Print(int arr[], const int n)
-{
-	for (int i = 0; i < n; i++)
-	{
-		cout << arr[i] << "\t";
-	}
-	cout << endl;
-}
-void Print(double arr[], const int n)
-{
-	for (int i = 0; i < n; i++)
-	{
-		cout << arr[i] << "\t";
-	}
-	cout << endl;
-}
 
 void Print(int arr[ROWS][COLS], const int ROWS, const int COLS)
 {
@@ -192,6 +195,8 @@ void Print(int arr[ROWS][COLS], const int ROWS, const int COLS)
 		cout << endl;
 	}
 }
+
+
 void Print(double arr[ROWS][COLS], const int ROWS, const int COLS)
 {
 	for (int i = 0; i < ROWS; i++)
@@ -288,6 +293,7 @@ void Sort(double arr[ROWS][COLS], const int ROWS, const int COLS)
 	cout << "Массив отсортирован за " << iterations  << " итераций " << endl;
 }
 
+
 int Sum(int arr[], const int n)
 {
 	int sum = 0;
@@ -308,9 +314,10 @@ double Sum(double arr[], const int n)
 	return sum;
 }
 
-int Sum(int arr[ROWS][COLS], const int ROWS, const int COLS)
+template<typename T>
+T Sum(T arr[ROWS][COLS], const int ROWS, const int COLS)
 {
-	int sum = 0;
+	T sum = 0;
 	for (int i = 0; i < ROWS; i++)
 	{
 		for (int j = 0; j < COLS; j++)
@@ -346,7 +353,9 @@ double Avg(double arr[], const int n)
 	
 }
 
-double Avg(int arr[ROWS][COLS], const int ROWS, const int COLS)
+template<typename T>
+
+double Avg(T arr[ROWS][COLS], const int ROWS, const int COLS)
 {
 	return (double)Sum(arr, ROWS, COLS) / (ROWS*COLS);
 
@@ -381,10 +390,11 @@ double minValueIn(double arr[], const int n)
 	return min;
 }
 
+template<typename T>
 
-int minValueIn(int arr[ROWS][COLS], const int ROWS, const int COLS)
+T minValueIn(T arr[ROWS][COLS], const int ROWS, const int COLS)
 {
-	int min = arr[0][0];
+	T min = arr[0][0];
 	for (int i = 0; i < ROWS; i++)
 	{
 		for (int j = 0; j < COLS; j++)
@@ -443,9 +453,11 @@ double  maxValueIn(double arr[], const int n)
 	return max;
 }
 
-int maxValueIn(int arr[ROWS][COLS], const int ROWS, const int COLS)
+template<typename T>
+
+T maxValueIn(T arr[ROWS][COLS], const int ROWS, const int COLS)
 {
-		int max = arr[0][0];
+		T max = arr[0][0];
 		for (int i = 0; i < ROWS; i++)
 		{
 			for (int j = 0; j < COLS; j++)
